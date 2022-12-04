@@ -1,6 +1,6 @@
 ---
 title: "ST 502 Final"
-author: "Katelyn Settlemyre, Julia Farrel"
+author: "Katelyn Settlemyre, Julia Farrell"
 date: "2022-12-04"
 output: pdf_document
 ---
