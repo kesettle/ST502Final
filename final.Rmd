@@ -7,5 +7,44 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#include libraries needed here
+
+```
+
+## Introduction
+
+_What is the general idea of testing for homogeneity? Perhaps also explain the purpose and outline of this project._
+
+
+## Data Example
+
+_Use hospital data given to conduct a_ $\chi^2$ _test for homogeneity._
+```{r}
+#create and print matrix of hospital data
+rows <- rbind(a=c(41, 27, 51), b=c(36,3,40), c=c(169, 106, 109))
+(hospDat <- matrix(data=rows, nrow = 3, ncol = 3, 
+                   dimnames = list(c("A", "B", "C"), 
+                                   c("Surgical Site Infections", 
+                                     "Pneumonia Infections", 
+                                     "Bloodstream Infections"))))
+```
+
+
+## Deriving the Likelihood Ratio Test
+
+_Derive the LRT test for homogeneity; some work already done on page 151 of our notes. Pages 129, 132, 137, 139 may also be useful?_
+
+
+## Simulation
+
+_Simulate test with data. Potentially make use of code already given in notes. Two multinomial case only, with 3 categories in each multinomial. Plot summaries of simulations. Set seed for reproduction purposes._
+
+Goal:
+
+Process:
+
+```{r}
+#set seed for reproduction
+set.seed(17)
 ```
 
