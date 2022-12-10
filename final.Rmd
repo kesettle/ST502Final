@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 _What is the general idea of testing for homogeneity? Perhaps also explain the purpose and outline of this project._
 
+This report will explore the Chi-Square test for homogeneity in detail. We will derive the likelihood ratio test stastic and explain the Pearson Chi-Square statistic associated with this test that is used to determine the rejection criterion. Once the theory is well established, we then conduct a simulation. The goal is to determine how well the asymptotic rejection region performs at controlling the alpha level of the Pearson Chi-Square test and to determine the power of the asymptotic test when comparing certain alternative hypotheses.
+
 
 ## Data Example
 
