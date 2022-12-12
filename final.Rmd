@@ -88,22 +88,22 @@ c = 3
 p1 = c(1/3, 1/3, 1/3)
 p2 = c(1/10, 3/10, 6/10)
 p3 = c(1/10, 1/10, 8/10)
-#generate many simulated data sets from a multinomial distribution (H0 assumed)
-B<-10
-#B<-50000
 
-# two multinomials, each have three categories, 
-# using sample size 20, equal probabilities
-multiGen1 <- rmultinom(1, n1[1], p1);
-multiGen2 <- rmultinom(1, n1[1], p1);
-multiGen <- cbind(multiGen1, multiGen2)
-multiGenT = t(multiGen)
+# function to create two multinomials,using sample size and probabilities input
+### sampleSize: (int)
+### probs: (list of doubles) length of p split determines number of classes. All = 3 for this simulation.
+simulateMultinomial <- function(sampleSize, probs) {
+  multiGen1 <- rmultinom(1, sampleSize, probs);
+  multiGen2 <- rmultinom(1, sampleSize, probs);
+  multiGen <- cbind(multiGen1, multiGen2)
+  multiGenT = t(multiGen)
+  # Chi Square calculated by R
+  p <- chisq.test(multiGenT)
+  x <- p$statistic
+  return(x)
+}
 
-# Chi Square calculated by R
-p <- chisq.test(multiGenT)
-x <- p$statistic
-
-# Pearson's Chi Square calculation
+simulateMultinomial(n1[1], p1)
 
 
 ```
