@@ -56,11 +56,11 @@ The likelihood function is given by $L(\pi_{ij}'s)=\prod_{j=1}^{J}{\binom{J}{n}\
 
 Taking the natural log of the likelihood, we get the log-likelihood function $l \propto ln(\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}})=\sum_{j=1}^J\sum_{i=1}^I n_{ij}\cdot \pi_{ij}$
 
-Note that the constraint dictates that the degrees of freedom of the whole space is given by $dim(\Omega) = J\cdot (I-1)$ with the dimension of each multinomial given by $dim(\omega) = (I-1)$. The expected counts under $H_0$ are $E(ij)=\frac{n_{\cdot j}n_{i \cdot}}{n}$.
+Note that the constraint dictates that the degrees of freedom of the whole space is given by $dim(\Omega) = J\cdot (I-1)$ with the dimension of each multinomial given by $dim(\omega) = (I-1)$. The degrees of freedom are therefore:$df = J(I-1) - (I-1) = (I-1)(J-1)$. The expected counts under $H_0$ are $E(ij)=\frac{n_{\cdot j}n_{i \cdot}}{n}$.
 
 Under the null hypothesis,$\pi_{11}=\pi_{12}=...=\pi_{1J}$, so we will replace these with a common value $\pi_1$. Similarly, we will continue forward considering the common values $\pi_1,..., \pi_I$. There is one restriction on these probabilities to make them valid, which is $\sum\pi_i=1$
 
-The degrees of freedom for this reference distribution are therefore:$df = J(I-1) - (I-1) = (I-1)(J-1)$. 
+We look at the likelihood ratio $\lambda = \frac{L(H_0)}{L(H_1)}=\frac{\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}}{\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}}$
 
 Using the Lagrange Multiplier technique, we can find the maximized value for the likelihood ratio.
 
