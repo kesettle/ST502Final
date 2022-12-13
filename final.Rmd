@@ -54,17 +54,20 @@ Let there be $J$ independent multinomial distributions, each with $I$ categories
 
 To determine if there is a difference between the probability's associated with each multinomial being tested, we look at the difference between the expected and observed counts $Obs_{ij}-Exp_{ij}$, where the expected counts assume the null hypothesis to be true. We need to look at the likelihood function, which is given by the product of the $J$ multinomials.
 
-The likelihood function is given by $L(\pi_{ij}'s)=\prod_{j=1}^{J}{\binom{J}{n}\cdot \pi_{ij}^{n_{ij}}}\cdot\pi_{2j}^{n_{2j}}\cdot ... \cdot\pi_{IJ}^{n_{IJ}}$ $\propto \prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}$. This likelihood function is subject to the constraint $\sum_{i=1}^I{\pi_i}=1, \forall i\in I \forall j \in J$. 
+The likelihood function is given by $L(\pi_{ij}'s)=\prod_{j=1}^{J}{\binom{J}{n}\cdot \pi_{ij}^{n_{ij}}}\cdot\pi_{2j}^{n_{2j}}\cdot ... \cdot\pi_{IJ}^{n_{IJ}}$ $\propto \prod_{i=1}^{I}\prod_{j=1}^{J}{\pi_{ij}^{n_{ij}}}$. This likelihood function is subject to the constraint $\sum_{i=1}^I{\pi_i}=1, \forall i\in I \forall j \in J$. 
 
-Taking the natural log of the likelihood, we get the log-likelihood function $l \propto ln(\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}})=\sum_{j=1}^J\sum_{i=1}^I n_{ij}\cdot \pi_{ij}$
+Since $\pi_{11}=\pi_{12}=...=\pi_{1J}$ under the null hypothesis, we  replace these with a common value $\pi_1$. Similarly, we will can  considering the common values $\pi_1,..., \pi_I$. There is one restriction on these probabilities to make them valid, which is $\sum\pi_i=1$.
+
+Therefore, the likelihood function is $L(\pi_{ij}'s)=\prod_{i=1}^{I}\prod_{j=1}^{J}{\pi_{i}^{J\cdot n_{ij}}}$
+
+Taking the natural log of the likelihood, we get the log-likelihood function $l = ln(\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}})=\sum_{j=1}^J\sum_{i=1}^I J \cdot n_{ij}\cdot \pi_{i}$
 
 Note that the constraint dictates that the degrees of freedom of the whole space is given by $dim(\Omega) = J\cdot (I-1)$ with the dimension of each multinomial given by $dim(\omega) = (I-1)$. The degrees of freedom are therefore:$df = J(I-1) - (I-1) = (I-1)(J-1)$. The expected counts under $H_0$ are $E(ij)=\frac{n_{\cdot j}n_{i \cdot}}{n}$.
 
-Under the null hypothesis,$\pi_{11}=\pi_{12}=...=\pi_{1J}$, so we will replace these with a common value $\pi_1$. Similarly, we will continue forward considering the common values $\pi_1,..., \pi_I$. There is one restriction on these probabilities to make them valid, which is $\sum\pi_i=1$
+Using the Lagrange Multiplier technique, we can find the maximized value for the likelihood ratio given the constraints. $l(\pi_{ij}'s, \lambda)=\sum_{j=1}^J\sum_{i=1}^I J \cdot n_{ij}\cdot \pi_{i}+\lambda(1-\sum_{i=1}^I\pi_i)$
 
-We look at the likelihood ratio $\lambda = \frac{L(H_0)}{L(H_1)}=\frac{\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}}{\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}}$
+Take partial derivatives with respect to  $\pi_i$ and $\lambda$ to solve for the value of $\lambda=nJ$. 
 
-Using the Lagrange Multiplier technique, we can find the maximized value for the likelihood ratio.
 
 The likelihood ratio test for the homogeneity hypothesis being tested is therefore given by $LRT=2\sum_{j=1}^J\sum_{i=1}^I{Obs_{ij} \cdot ln(\frac{Obs_{ij}}{Exp_{ij}})}$
 
