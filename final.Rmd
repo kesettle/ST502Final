@@ -46,35 +46,34 @@ The p-value of our chi-square test statistic is extremely small, indicating that
 
 ## Deriving the Likelihood Ratio Test
 
-The goal is to derive the likelihood ratio test for a generalized case comparing $J$ independent multinomial distributions, each with $I$ categories.
+The goal of this section is to derive the likelihood ratio test for a generalized case comparing $J$ independent multinomial distributions, each with $I$ categories.
 
-Let there be $J$ independent multinomial distributions, each with $I$ categories, where $I,J\in \mathbb{N}$. We want to test the hypothesis $H_0 = \pi_{11}=\pi_{12}=...=\pi_{1J}, \pi_{21}=\pi_{22}=...=\pi_{1J}, \pi_{I1}=\pi_{I2}=...=\pi_{IJ}$ vs. $H_a:$ at least one probability differs
+Let there be $J$ independent multinomial distributions, each with $I$ categories, where $I,J\in \mathbb{N}$. We want to test the hypothesis $H_0 = \pi_{11}=\pi_{12}=...=\pi_{1J}, \pi_{21}=\pi_{22}=...=\pi_{1J}, \pi_{I1}=\pi_{I2}=...=\pi_{IJ}$ vs. $H_a:$ at least one probability differs.
 
-To derive the likelihood ratio test, we will initially look at the likelihood function, which is just the product of the $J$ multinomials.
+To determine if there is a difference between the probability's associated with each multinomial being tested, we look at the difference between the expected and observed counts $Obs_{ij}-Exp_{ij}$, where the expected counts assume the null hypothesis to be true. We need to look at the likelihood function, which is given by the product of the $J$ multinomials.
 
-Expected Counts Under $H_0$: $L(\pi_{ij}'s)=\prod_{j=1}^{J}{\binom{0}{0}\cdot \pi_{ij}^{n_{ij}}}\cdot\pi_{2j}^{n_{2j}}\cdot ... \cdot\pi_{IJ}^{n_{IJ}}$ $\propto \prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}$ subject to constraints \*\*\*
+The likelihood function is given by $L(\pi_{ij}'s)=\prod_{j=1}^{J}{\binom{J}{n}\cdot \pi_{ij}^{n_{ij}}}\cdot\pi_{2j}^{n_{2j}}\cdot ... \cdot\pi_{IJ}^{n_{IJ}}$ $\propto \prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}}$. This likelihood function is subject to the constraint $\sum_{i=1}^I{\pi_i}=1, \forall i\in I \forall j \in J$. 
 
-Under the null hypothesis,$\pi_{11}=\pi_{12}=...=\pi_{1J}$, so we will replace this with the common value $\pi_1$. Similarly, we will continue forward considering the common values $\pi_1,..., \pi_I$. There is one restriction on these probabilities to make them valid, which is $\pi_1+\pi_2+...+ \pi_I=1$
+Taking the natural log of the likelihood, we get the log-likelihood function $l \propto ln(\prod_{j=1}^{J}\prod_{i=1}^{I}{\pi_{ij}^{n_{ij}}})=\sum_{j=1}^J\sum_{i=1}^I n_{ij}\cdot \pi_{ij}$
 
-Degrees of freedom for reference distribution:\
-$dim(\Omega) = J\cdot (I-1)$\
-$dim(\omega) = (I-1)$\
-$df = J(I-1) - (I-1) = (I-1)(J-1)$
+Note that the constraint dictates that the degrees of freedom of the whole space is given by $dim(\Omega) = J\cdot (I-1)$ with the dimension of each multinomial given by $dim(\omega) = (I-1)$. The expected counts under $H_0$ are $E(ij)=\frac{n_{\cdot j}n_{i \cdot}}{n}$.
 
-.\
-. More derivation steps\
-.\
-.\
+Under the null hypothesis,$\pi_{11}=\pi_{12}=...=\pi_{1J}$, so we will replace these with a common value $\pi_1$. Similarly, we will continue forward considering the common values $\pi_1,..., \pi_I$. There is one restriction on these probabilities to make them valid, which is $\sum\pi_i=1$
+
+The degrees of freedom for this reference distribution are therefore:$df = J(I-1) - (I-1) = (I-1)(J-1)$. 
+
+Using the Lagrange Multiplier technique, we can find the maximized value for the likelihood ratio.
+
 The likelihood ratio test for the homogeneity hypothesis being tested is therefore given by $LRT=2\sum_{j=1}^J\sum_{i=1}^I{Obs_{ij} \cdot ln(\frac{Obs_{ij}}{Exp_{ij}})}$
 
 ## Simulation
 
-Goal:  
-- Determine how well the asymptotic rejection region performs at controlling $\alpha$.  
+Goal:
+- Determine how well the asymptotic rejection region performs at controlling $\alpha$.
 - Determine the power of the asymptotic test when comparing certain alternative situations.
 
-Process:  
-For the simulation process, we will do the case of 2 multinomials each with 3 classes. We will generate many, many tables of these multinomial pairs, each of varying sample sizes, and from 3 cases of probabilities: the equal probability case, and two mixed cases. After generating our tables, we will then conduct a theoretical $\chi^2$ test and obtain a proportion of times we reject $H_0$ over all tests for each combination of sample sizes under each probability case. This is our approximated $\alpha$. Similarly, we will look at the power of the test by comparing multinomials of varying sample sizes with different probability cases: equal case vs the first mixed case, equal case vs the second mixed case, first mixed case vs the second mixed case.  
+Process:
+For the simulation process, we will do the case of 2 multinomials each with 3 classes. We will generate many, many tables of these multinomial pairs, each of varying sample sizes, and from 3 cases of probabilities: the equal probability case, and two mixed cases. After generating our tables, we will then conduct a theoretical $\chi^2$ test and obtain a proportion of times we reject $H_0$ over all tests for each combination of sample sizes under each probability case. This is our approximated $\alpha$. Similarly, we will look at the power of the test by comparing multinomials of varying sample sizes with different probability cases: equal case vs the first mixed case, equal case vs the second mixed case, first mixed case vs the second mixed case.
 For both the $\alpha$ control and the power inspection, we will graph the comparisons.
 
 ```{r, warning=FALSE}
@@ -95,8 +94,8 @@ p3 <- c(0.1, 0.1, 0.8) #mixed 2
 N <- 50000
 
 #number of classes & multinomials being compared
-#classes I = 3   
-#multinomials J = 2   
+#classes I = 3
+#multinomials J = 2
 
 # function to create two multinomials,using sample size and probabilities input
 ### sampleSize: (int)
