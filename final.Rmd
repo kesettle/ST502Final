@@ -15,7 +15,9 @@ library(ggplot2)
 
 This report will explore the Chi-Square test for homogeneity in detail. We will derive the likelihood ratio test (LRT) statistic used to conduct this test and explain the Pearson Chi-Square statistic that can be used as an approximation. Once the theory is well established, we then conduct a simulation. The goal is to determine how well the asymptotic rejection region performs at controlling the alpha level of the Pearson Chi-Square test and to determine the power of the asymptotic test when comparing certain alternative hypotheses.
 
-The Chi-Square test for homogeneity is used in a specific case: comparing $J$ multinomials with $I$ classes (with $I,J \in \mathbb{N}$), where the researcher is interested in determining if the probabilities of each cell are the same across every multinomial.
+The Chi-Square test for homogeneity is used in a specific case: comparing $J$ multinomials with $I$ classes (with $I,J \in \mathbb{N}$), where the researcher is interested in determining if the probabilities of each cell are the same across every multinomial. In practice, this test can be used to see if identifying factors (sex/age/etc.) have an impact on factors a researcher is interested in studying. For example, a medical research group may want to know if sex has a relationship with the probability that specific, unrelated illnesses are contracted. They could sample a large independent population, creating a multinomial for males and females with observed and expected counts. By performing the Chi-Square test for homogeneity, the research group would be able to determine the likelihood that sex has a relationship  illnesses of interest.
+
+It is worth mentioning that the Chi-Square test for independence is similar to the test for homogeneity. The chi-square test statistic is derived through a different approach, but is ultimately the same. However the use cases are 
 
 ## Data Example
 
@@ -221,6 +223,9 @@ powerDat <- rbind(b1,b2,b3)
 #create graphs
 ggplot(powerDat, aes(x=n2,y=power, group=p))+geom_line(aes(color=p))+facet_grid(.~n1)
 
-
-
 ```
+
+### Discussion
+The results of this simulation indicate for all probability distributions, the simulated alpha is quite good. For the mixed probability cases, the alpha values all fall below the $alpha$=0.05 threshold. For the equal probability case, the alpha level tends to be higher than the mixed, but is sitll reasonably close to the typical $alpha$=0.05 case on average.
+
+As would naturally be expected, the power level of the simulations increases with sample size. There is a particularly high power associated with comparing the first hypothesis to the third - likely due to the fact that the true probabilities being simulated are distinct for each class. In the power calculations for multinomials simulated with at least one class having the same probability, the increase from twenty to fifty observations is particularly steep. This suggests that when comparing populations that may come from populations with overlapping class probabilities, a higher number of subjects will be crucial in making analysis with high power levels.
